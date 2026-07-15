@@ -1,0 +1,221 @@
+name: Linux Commands Practice
+
+on:
+  workflow_dispatch:
+
+jobs:
+  linux-practice:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Show Current Directory
+      run: pwd
+
+    - name: Show Files
+      run: ls
+
+    - name: Show Hidden Files
+      run: ls -la
+
+    - name: Show Current User
+      run: whoami
+
+    - name: Show Hostname
+      run: hostname
+
+    - name: Show Date
+      run: date
+
+    - name: Show Calendar
+      run: cal || true
+
+    - name: Show Linux Version
+      run: uname -a
+
+    - name: Show Kernel
+      run: uname -r
+
+    - name: Show CPU Information
+      run: lscpu
+
+    - name: Show Memory
+      run: free -h
+
+    - name: Show Disk Usage
+      run: df -h
+
+    - name: Show Mounted Filesystems
+      run: mount
+
+    - name: Show Block Devices
+      run: lsblk
+
+    - name: Show Running Processes
+      run: ps -ef
+
+    - name: Show Environment Variables
+      run: env
+
+    - name: Show PATH
+      run: echo $PATH
+
+    - name: Create Folder
+      run: mkdir linux
+
+    - name: Enter Folder and Create Files
+      run: |
+        cd linux
+        touch file1.txt
+        touch file2.txt
+        touch file3.txt
+
+    - name: List Files
+      run: |
+        cd linux
+        ls -l
+
+    - name: Write to File
+      run: |
+        echo "Hello GitHub Actions" > linux/file1.txt
+
+    - name: Append Data
+      run: |
+        echo "Linux Learning" >> linux/file1.txt
+
+    - name: Display File
+      run: |
+        cat linux/file1.txt
+
+    - name: Copy File
+      run: |
+        cp linux/file1.txt linux/filecopy.txt
+
+    - name: Move File
+      run: |
+        mv linux/file2.txt linux/newfile.txt
+
+    - name: Rename Folder
+      run: |
+        mv linux linux_demo
+
+    - name: Find Files
+      run: |
+        find . -name "*.txt"
+
+    - name: Count Lines
+      run: |
+        wc -l linux_demo/file1.txt
+
+    - name: Count Words
+      run: |
+        wc linux_demo/file1.txt
+
+    - name: Search Text
+      run: |
+        grep Linux linux_demo/file1.txt
+
+    - name: Head Command
+      run: |
+        head linux_demo/file1.txt
+
+    - name: Tail Command
+      run: |
+        tail linux_demo/file1.txt
+
+    - name: Sort Example
+      run: |
+        echo -e "Banana\nApple\nOrange" > fruits.txt
+        sort fruits.txt
+
+    - name: Unique Example
+      run: |
+        echo -e "A\nA\nB\nC\nC" > test.txt
+        uniq test.txt
+
+    - name: Cut Command
+      run: |
+        echo "Rajesh,DevOps,India" > info.csv
+        cut -d "," -f2 info.csv
+
+    - name: awk Example
+      run: |
+        awk '{print $1}' info.csv
+
+    - name: sed Example
+      run: |
+        sed 's/India/USA/' info.csv
+
+    - name: Show Network Interfaces
+      run: ip a
+
+    - name: Show Routing Table
+      run: ip route
+
+    - name: Ping Google
+      run: ping -c 4 google.com
+
+    - name: Curl Example
+      run: curl https://www.google.com
+
+    - name: Download File
+      run: wget https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore
+
+    - name: Check Open Ports
+      run: ss -tuln
+
+    - name: Display Uptime
+      run: uptime
+
+    - name: Print Numbers
+      run: |
+        for i in {1..10}
+        do
+          echo "Number $i"
+        done
+
+    - name: If Statement
+      run: |
+        value=10
+
+        if [ $value -gt 5 ]
+        then
+            echo "Greater"
+        else
+            echo "Smaller"
+        fi
+
+    - name: Create Shell Script
+      run: |
+        echo '#!/bin/bash' > hello.sh
+        echo 'echo Hello DevOps' >> hello.sh
+        chmod +x hello.sh
+        ./hello.sh
+
+    - name: Show Git Version
+      run: git --version
+
+    - name: Show Git Status
+      run: git status
+
+    - name: Show Current Branch
+      run: git branch
+
+    - name: Show Git Log
+      run: git log --oneline || true
+
+    - name: Compress Folder
+      run: tar -czvf linux.tar.gz linux_demo
+
+    - name: List Tar Content
+      run: tar -tvf linux.tar.gz
+
+    - name: Remove Files
+      run: rm -rf linux_demo
+
+    - name: Finish   
+      run: echo "Linux Commands Completed Successfully"  
