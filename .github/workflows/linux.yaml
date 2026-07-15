@@ -156,8 +156,7 @@ jobs:
     - name: Show Routing Table
       run: ip route
 
-    - name: Ping Google
-      run: ping -c 4 google.com
+   
 
     - name: Curl Example
       run: curl https://www.google.com
